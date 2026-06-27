@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="cat-container">
+
+        <h1 class="title">Вопрос 3 💖</h1>
+
+        <p id="question">Сейчас будет сложный вопрос, ты готова?</p>
+        
+        <img id="img" src="" class="cat-gif" style="display:none;">
+
+        <div class="answers">
+            <button id="btnYes" onclick="answer(true)" class="btn">Да</button>
+            <button id="btnFalse" onclick="answer(false)" class="btn">Нет</button>
+        </div>
+
+        <p id="reaction"></p>
+
+    </div>
+</div>
+
+<div class="hearts">
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💞</div>
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+</div>
+
+<script>
+let step = 0;
+
+function answer(result) {
+
+    let question = document.getElementById("question");
+    let reaction = document.getElementById("reaction");
+    let img = document.getElementById("img");
+
+    if (step === 0) {
+
+        if (!result) {
+            reaction.innerText = "Блин, ну тогда подготовься 😈";
+            reaction.style.color = "red";
+            return;
+        }
+
+        step = 1;
+
+        question.innerText = "Я красивый?";
+        reaction.innerText = "";
+        img.style.display = "block";
+        img.src = "vadik.png";
+
+        return;
+    }
+
+    if (step === 1) {
+
+        if (result) {
+            reaction.innerText = "Фууух, спасибо 💖";
+            reaction.style.color = "#ff4d6d";
+            img.src = "second_questions.gif";
+        } else {
+
+            reaction.innerText = "Я знал 😭";
+            reaction.style.color = "red";
+            img.src = "first_questions_sad.gif";
+
+            document.querySelector(".answers").style.display = "none";
+
+            setTimeout(() => {
+
+                document.querySelector(".answers").style.display = "block";
+                reaction.innerText = "";
+                img.src = "vadik.png"; 
+
+            }, 2000); 
+
+            return;
+        }
+
+        step = 2;
+
+        setTimeout(() => {
+            window.location.href = "test4.html";
+        }, 2500);
+    }
+}
+</script>
+
+</body>
+</html>
